@@ -14,7 +14,7 @@ const paletteData: PaletteSectionData[] = [
   {
     title: 'Earth & Volcano',
     icon: '🌋',
-    imageUrl: 'https://images.unsplash.com/photo-1589177927318-151b7f0c4c47?q=80&w=2070&auto=format&fit=crop',
+    imageUrl: 'assets/vesuvio.png',
     colors: [
       { name: 'Pompeian Red', hex: '#A42A2E' },
       { name: 'Vesuvian Terracotta', hex: '#B55E3C' },
