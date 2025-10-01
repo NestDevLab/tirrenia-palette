@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tirrenia - Color Palette</title>
-    <!-- Tailwind (solo per sviluppo; in prod usare build) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Libs per export PDF -->
+    <!-- PDF Generation Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
             integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -15,11 +15,7 @@
             integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!-- React 18 UMD (sviluppo) -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-
-    <!-- Babel per trasformare JSX/TS live (solo sviluppo) -->
+    <!-- Babel for live JSX/TS transpilation -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
@@ -39,7 +35,7 @@
 </head>
   <body>
     <div id="root"></div>
-    <!-- Transpila TSX (NOTA: nessun import ESM dentro) -->
-    <script type="text/babel" data-presets="react,typescript" src="index.tsx"></script>
+    <!-- Transpile and run the application script as an ES module -->
+    <script type="text/babel" data-presets="react,typescript" src="index.tsx" data-type="module"></script>
   </body>
 </html>
