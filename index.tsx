@@ -1,4 +1,6 @@
-// Buildless version: niente import, usa le globali React / ReactDOM fornite dagli script UMD.
+// Fix: Add imports for React and ReactDOM to treat the file as a module.
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 // --- TYPES ---
 interface Color {
@@ -71,23 +73,28 @@ const ColorCard: React.FC<{ color: Color }> = ({ color }) => {
 };
 
 const PaletteSection: React.FC<PaletteSectionData> = ({ title, icon, imageUrl, colors }) => (
-  <section>
-    <div className="mb-6 rounded-lg overflow-hidden shadow-lg">
-      <img
-        src={imageUrl}
-        alt={`Inspiration for ${title} color palette`}
-        className="w-full h-48 md:h-64 object-cover"
-        loading="lazy"
-      />
-    </div>
-    <h2 className="text-3xl font-semibold mb-6 flex items-center gap-3">
-      <span className="text-2xl">{icon}</span>
-      {title}
-    </h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-      {colors.map(color => <ColorCard key={color.name} color={color} />)}
-    </div>
-  </section>
+    <section className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
+        {/* --- Left Column: Image and Title --- */}
+        <div className="lg:sticky lg:top-8 mb-6 lg:mb-0">
+            <div className="rounded-lg overflow-hidden shadow-lg aspect-[4/3] bg-white">
+                <img
+                    src={imageUrl}
+                    alt={`Inspiration for ${title} color palette`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                />
+            </div>
+            <h2 className="text-3xl font-semibold mt-4 flex items-center gap-3">
+                <span className="text-2xl">{icon}</span>
+                {title}
+            </h2>
+        </div>
+
+        {/* --- Right Column: Color Cards --- */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+            {colors.map(color => <ColorCard key={color.name} color={color} />)}
+        </div>
+    </section>
 );
 
 // --- DATA ---
@@ -106,7 +113,7 @@ const paletteData: PaletteSectionData[] = [
   {
     title: 'Sea & Coast',
     icon: '🌊',
-    imageUrl: 'https://images.unsplash.com/photo-1534354203852-1d36a18e0a29?q=80&w=1964&auto=format&fit=crop',
+    imageUrl: 'assets/sea.png',
     colors: [
       { name: 'Tyrrhenian Blue', hex: '#2A6FA9' },
       { name: 'Capri Blue', hex: '#0F5D84', note: 'Alternative to Tyrrhenian Blue, for Tirrenia logo' },
@@ -117,7 +124,7 @@ const paletteData: PaletteSectionData[] = [
   {
     title: 'Daily Life & Gastronomy',
     icon: '🍋',
-    imageUrl: 'https://images.unsplash.com/photo-1600689404614-2c0401b44d2d?q=80&w=1974&auto=format&fit=crop',
+    imageUrl: 'assets/food.png',
     colors: [
       { name: 'Coffee Brown', hex: '#8A5B36', note: 'For Caffè al Banco logo' },
       { name: 'Dark Espresso', hex: '#3B2C28' },
@@ -127,7 +134,7 @@ const paletteData: PaletteSectionData[] = [
   {
     title: 'Art & History',
     icon: '🏛️',
-    imageUrl: 'https://images.unsplash.com/photo-1557622242-271b337039a8?q=80&w=1935&auto=format&fit=crop',
+    imageUrl: 'assets/baroque.png',
     colors: [
       { name: 'Antique Gold', hex: '#C9A64E' },
       { name: 'Historic Sign Green', hex: '#224B3B' },
@@ -136,7 +143,7 @@ const paletteData: PaletteSectionData[] = [
   {
     title: 'Neutrals / Bases',
     icon: '⚪',
-    imageUrl: 'https://images.unsplash.com/photo-1590055273153-6147585575e4?q=80&w=1974&auto=format&fit=crop',
+    imageUrl: 'assets/whites.png',
     colors: [
       { name: 'Whitewash White', hex: '#F2F0E9' },
       { name: 'Cream White (Flat White)', hex: '#EFE5D4' },
@@ -223,7 +230,7 @@ const App: React.FC = () => {
         </div>
       </header>
       <main className="container mx-auto px-4 pb-16">
-        <div className="space-y-16">
+        <div className="space-y-16 lg:space-y-24">
           {paletteData.map(section => (
             <PaletteSection key={section.title} {...section} />
           ))}
