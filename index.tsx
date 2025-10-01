@@ -1,9 +1,4 @@
-// All components and types are consolidated into this single file for buildless deployment.
-// All 'import' and 'export' statements have been removed to rely on global React/ReactDOM objects.
-
-// Fix: Add imports for React and ReactDOM to resolve UMD global errors.
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+// Buildless version: niente import, usa le globali React / ReactDOM fornite dagli script UMD.
 
 // --- TYPES ---
 interface Color {
@@ -20,7 +15,6 @@ interface PaletteSectionData {
 }
 
 // --- GLOBAL AUGMENTATION ---
-// Augment the global window interface for TypeScript to recognize html2canvas and jspdf
 declare global {
   interface Window {
     html2canvas: any;
@@ -29,7 +23,6 @@ declare global {
 }
 
 // --- COMPONENTS ---
-
 const ColorCard: React.FC<{ color: Color }> = ({ color }) => {
   const { name, hex, note } = color;
   const [copied, setCopied] = React.useState(false);
@@ -41,20 +34,15 @@ const ColorCard: React.FC<{ color: Color }> = ({ color }) => {
 
   React.useEffect(() => {
     if (copied) {
-      const timer = setTimeout(() => {
-        setCopied(false);
-      }, 2000);
+      const timer = setTimeout(() => setCopied(false), 2000);
       return () => clearTimeout(timer);
     }
   }, [copied]);
 
   return (
     <div className="flex flex-col rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl bg-white">
-      <div
-        className="h-32"
-        style={{ backgroundColor: hex }}
-      />
-      <div className="p-4 border-t-4" style={{borderColor: hex}}>
+      <div className="h-32" style={{ backgroundColor: hex }} />
+      <div className="p-4 border-t-4" style={{ borderColor: hex }}>
         <p className="font-bold text-lg text-gray-900">{name}</p>
         <button
           onClick={handleCopy}
@@ -64,44 +52,45 @@ const ColorCard: React.FC<{ color: Color }> = ({ color }) => {
           {copied ? 'Copied!' : hex.toUpperCase()}
         </button>
         {note && (
-            <p className="text-xs text-gray-500 mt-2 flex items-start gap-1.5">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 flex-shrink-0 mt-px" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-                </svg>
-                <span>{note}</span>
-            </p>
+          <p className="text-xs text-gray-500 mt-2 flex items-start gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 className="h-4 w-4 flex-shrink-0 mt-px"
+                 viewBox="0 0 20 20"
+                 fill="currentColor"
+                 aria-hidden="true">
+              <path fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clipRule="evenodd" />
+            </svg>
+            <span>{note}</span>
+          </p>
         )}
       </div>
     </div>
   );
 };
 
-const PaletteSection: React.FC<PaletteSectionData> = ({ title, icon, imageUrl, colors }) => {
-  return (
-    <section>
-      <div className="mb-6 rounded-lg overflow-hidden shadow-lg">
-        <img 
-          src={imageUrl} 
-          alt={`Inspiration for ${title} color palette`} 
-          className="w-full h-48 md:h-64 object-cover" 
-          loading="lazy" 
-        />
-      </div>
-      <h2 className="text-3xl font-semibold mb-6 flex items-center gap-3">
-        <span className="text-2xl">{icon}</span>
-        {title}
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-        {colors.map((color) => (
-          <ColorCard key={color.name} color={color} />
-        ))}
-      </div>
-    </section>
-  );
-};
+const PaletteSection: React.FC<PaletteSectionData> = ({ title, icon, imageUrl, colors }) => (
+  <section>
+    <div className="mb-6 rounded-lg overflow-hidden shadow-lg">
+      <img
+        src={imageUrl}
+        alt={`Inspiration for ${title} color palette`}
+        className="w-full h-48 md:h-64 object-cover"
+        loading="lazy"
+      />
+    </div>
+    <h2 className="text-3xl font-semibold mb-6 flex items-center gap-3">
+      <span className="text-2xl">{icon}</span>
+      {title}
+    </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      {colors.map(color => <ColorCard key={color.name} color={color} />)}
+    </div>
+  </section>
+);
 
-// --- MAIN APP ---
-
+// --- DATA ---
 const paletteData: PaletteSectionData[] = [
   {
     title: 'Earth & Volcano',
@@ -158,41 +147,33 @@ const paletteData: PaletteSectionData[] = [
   },
 ];
 
+// --- APP ---
 const App: React.FC = () => {
   const [isGeneratingPdf, setIsGeneratingPdf] = React.useState(false);
 
   const handleDownloadPdf = () => {
     if (!window.html2canvas || !window.jspdf) {
-      alert('The libraries for PDF generation have not been loaded yet. Please try again in a moment.');
+      alert('PDF libraries not loaded yet. Try again in a moment.');
       return;
     }
-
     setIsGeneratingPdf(true);
     const input = document.getElementById('root');
-
     if (input) {
       window.html2canvas(input, {
         scale: 2,
         useCORS: true,
         logging: false,
-        onclone: (document: Document) => {
-          const downloadButton = document.querySelector('.download-pdf-button');
-          if (downloadButton) {
-            (downloadButton as HTMLElement).style.display = 'none';
-          }
-        },
+        onclone: (doc: Document) => {
+          const btn = doc.querySelector('.download-pdf-button') as HTMLElement | null;
+            if (btn) btn.style.display = 'none';
+        }
       }).then((canvas: HTMLCanvasElement) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new window.jspdf.jsPDF({
-          orientation: 'portrait',
-          unit: 'mm',
-          format: 'a4',
-        });
-
+        const pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
         const pdfWidth = pdf.internal.pageSize.getWidth();
-        const canvasAspectRatio = canvas.width / canvas.height;
-        const imgHeight = pdfWidth / canvasAspectRatio;
-        
+        const canvasAspect = canvas.width / canvas.height;
+        const imgHeight = pdfWidth / canvasAspect;
+
         let heightLeft = imgHeight;
         let position = 0;
 
@@ -201,40 +182,41 @@ const App: React.FC = () => {
 
         while (heightLeft > 0) {
           position -= pdf.internal.pageSize.getHeight();
-          pdf.addPage();
-          pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
-          heightLeft -= pdf.internal.pageSize.getHeight();
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+            heightLeft -= pdf.internal.pageSize.getHeight();
         }
 
         pdf.save('palette-campania-tradition.pdf');
         setIsGeneratingPdf(false);
       }).catch((err: Error) => {
-        console.error("Error during PDF generation:", err);
-        alert('An error occurred while generating the PDF.');
+        console.error('Error during PDF generation:', err);
+        alert('Error generating PDF.');
         setIsGeneratingPdf(false);
       });
     }
   };
 
-
   return (
     <div className="min-h-screen font-sans text-gray-800">
       <header className="py-12 px-4 text-center relative">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-          🎨 Complete Palette
-        </h1>
-        <p className="mt-2 text-xl text-gray-600">
-          Tirrenia / Campania Tradition
-        </p>
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">🎨 Complete Palette</h1>
+        <p className="mt-2 text-xl text-gray-600">Tirrenia / Campania Tradition</p>
         <div className="absolute top-4 right-4 md:top-6 md:right-6">
           <button
             onClick={handleDownloadPdf}
             disabled={isGeneratingPdf}
-            className="download-pdf-button bg-white border border-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg shadow-sm hover:bg-gray-50 disabled:bg-gray-200 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-2"
+            className="download-pdf-button bg-white border border-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg shadow-sm hover:bg-gray-50 disabled:bg-gray-200 disabled:cursor-not-allowed flex items-center gap-2"
             aria-label="Download the palette as a PDF"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 className="h-5 w-5"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor"
+                 strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
             </svg>
             {isGeneratingPdf ? 'Generating...' : 'Download PDF'}
           </button>
@@ -242,14 +224,8 @@ const App: React.FC = () => {
       </header>
       <main className="container mx-auto px-4 pb-16">
         <div className="space-y-16">
-          {paletteData.map((section) => (
-            <PaletteSection
-              key={section.title}
-              title={section.title}
-              icon={section.icon}
-              imageUrl={section.imageUrl}
-              colors={section.colors}
-            />
+          {paletteData.map(section => (
+            <PaletteSection key={section.title} {...section} />
           ))}
         </div>
       </main>
@@ -260,13 +236,9 @@ const App: React.FC = () => {
   );
 };
 
-
-// --- RENDER THE APP ---
-
+// --- RENDER ---
 const rootElement = document.getElementById('root');
-if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
-}
+if (!rootElement) throw new Error('Root element not found');
 
 const root = ReactDOM.createRoot(rootElement);
 root.render(

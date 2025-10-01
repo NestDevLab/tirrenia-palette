@@ -4,23 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tirrenia - Color Palette</title>
+    <!-- Tailwind (solo per sviluppo; in prod usare build) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    <!-- React and ReactDOM from CDN (UMD builds) -->
+
+    <!-- Libs per export PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+            integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+            integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- React 18 UMD (sviluppo) -->
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    
-    <!-- Add Babel for in-browser JSX/TS transpilation -->
+
+    <!-- Babel per trasformare JSX/TS live (solo sviluppo) -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
+
     <style>
       body {
-        background-color: #F2F0E9; /* Using Bianco Calce as a base background */
+        background-color: #F2F0E9;
       }
     </style>
-<script type="importmap">
+  <script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.1.1",
@@ -32,7 +39,7 @@
 </head>
   <body>
     <div id="root"></div>
-    <!-- Load and transpile the main TSX file using Babel -->
+    <!-- Transpila TSX (NOTA: nessun import ESM dentro) -->
     <script type="text/babel" data-presets="react,typescript" src="index.tsx"></script>
   </body>
 </html>
