@@ -74,25 +74,27 @@ const ColorCard: React.FC<{ color: Color }> = ({ color }) => {
 
 const PaletteSection: React.FC<PaletteSectionData> = ({ title, icon, imageUrl, colors }) => (
     <section className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
+      <div>
         <h2 className="text-3xl font-semibold mt-4 flex items-center gap-3">
-            <span className="text-2xl">{icon}</span>
-            {title}
+          <span className="text-2xl">{icon}</span>
+          {title}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-6">
-            {colors.map(color => <ColorCard key={color.name} color={color} />)}
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          {colors.map(color => (
+            <ColorCard key={color.name} color={color} />
+          ))}
         </div>
-        <div className="lg:sticky lg:top-8 mb-6 lg:mb-0">
-            <div className="rounded-lg overflow-hidden shadow-lg aspect-[4/3] bg-white">
-                <img
-                    src={imageUrl}
-                    alt={`Inspiration for ${title} color palette`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                />
-            </div>
+      </div>
+      <div className="lg:sticky lg:top-8 mt-6 lg:mt-0">
+        <div className="rounded-lg overflow-hidden shadow-lg aspect-[4/3] bg-white">
+          <img
+            src={imageUrl}
+            alt={`Inspiration for ${title} color palette`}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
         </div>
-
-
+      </div>
     </section>
 );
 
