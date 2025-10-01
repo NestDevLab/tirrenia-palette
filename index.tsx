@@ -1,8 +1,7 @@
 // All components and types are consolidated into this single file for buildless deployment.
 // All 'import' and 'export' statements have been removed to rely on global React/ReactDOM objects.
 
-// FIX: Import React and ReactDOM to resolve UMD global errors.
-// The TypeScript compiler is treating this file as a module, so explicit imports are necessary.
+// Fix: Add imports for React and ReactDOM to resolve UMD global errors.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
