@@ -18,12 +18,10 @@
     <!-- Babel for live JSX/TS transpilation -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <style>
-      body {
-        background-color: #F2F0E9;
-      }
-    </style>
-<script type="importmap">
+    <!-- Canonical palette CSS (single source of truth) -->
+    <link rel="stylesheet" href="/src/colors.css">
+
+    <script type="importmap">
 {
   "imports": {
     "react": "https://aistudiocdn.com/react@^19.1.1",

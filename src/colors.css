@@ -1,0 +1,62 @@
+/*
+  Canonical color palette for Tirrenia
+
+  This file is the single source of truth for color tokens.
+  - Each custom property is documented with: human-friendly name, category, and intended usage.
+  - Other workspaces should import this package's CSS and reference variables. Do NOT duplicate hex values.
+
+  Usage example:
+    @import 'path/to/node_modules/@tirrenia/palette/dist/colors.css';
+    color: var(--tirrenia-tyrrhenian-blue, #2A6FA9);
+
+  File paths:
+    - source: src/colors.css  (for development)
+    - published: dist/colors.css (packaged for npm)
+*/
+
+:root {
+  /* Primary brand colors */
+  /* Tyrrhenian Blue — category: brand / primary — usage: primary brand color, links, primary buttons */
+  --tirrenia-tyrrhenian-blue: #2A6FA9;
+
+  /* Capri Blue — category: brand / primary-alt — usage: alternative primary for logo or accent */
+  --tirrenia-capri-blue: #0F5D84;
+
+  /* Pompei Red — category: brand / accent — usage: highlights, destructive actions, accents */
+  --tirrenia-pompeian-red: #A42A2E;
+
+  /* Earth & Volcano */
+  --tirrenia-vesuvian-terracotta: #B55E3C; /* usage: warm accents, backgrounds */
+  --tirrenia-lava-black: #1F1B1A; /* usage: deep text, emphasis */
+  --tirrenia-vesuvian-stone-gray: #4E4447; /* usage: muted headings, borders */
+
+  /* Sea & Coast */
+  --tirrenia-emerald-green: #2E8857; /* usage: success, natural accents */
+  --tirrenia-olive-green: #6E7A3B; /* usage: subtle accents */
+
+  /* Daily Life & Gastronomy */
+  --tirrenia-coffee-brown: #8A5B36; /* usage: warm text and brand elements (Caffè Al Banco Logo) */
+  --tirrenia-dark-espresso: #3B2C28; /* usage: headings, emphasis */
+  --tirrenia-sorrento-lemon: #EACB2F; /* usage: callouts, highlights */
+
+  /* Art & History */
+  --tirrenia-antique-gold: #C9A64E; /* usage: premium accents */
+  --tirrenia-historic-sign-green: #224B3B; /* usage: badges, tertiary accents */
+
+  /* Neutrals / Bases */
+  --tirrenia-whitewash: #F2F0E9; /* usage: page background */
+  --tirrenia-cream-white: #EFE5D4; /* usage: surfaces */
+  --tirrenia-sand-beige: #D8C2A6; /* usage: subtle surfaces */
+  --tirrenia-light-marble: #E9E2D7; /* usage: panels */
+  --tirrenia-milk-cream: #F3EBDE; /* usage: soft backgrounds */
+
+  /* App-level semantic tokens (mapped by consuming workspace) */
+  --tirrenia-app-background: var(--tirrenia-whitewash);
+  --tirrenia-app-surface: var(--tirrenia-milk-cream);
+  --tirrenia-app-text: #1f2933; /* usage: primary body text */
+  --tirrenia-app-muted: #64748b; /* usage: secondary text */
+  --tirrenia-app-border: rgba(15, 23, 42, 0.08);
+  --tirrenia-app-hover: rgba(42, 111, 169, 0.08); /* using tyrrhenian blue 8% */
+}
+
+/* Optional: dark theme overrides can be provided by consumers by overriding these variables under .dark-theme */

@@ -35,11 +35,27 @@ workspaces/tirrenia-palette/
 ├── assets/          # Palette imagery referenced by the UI
 ├── index.html       # Entry HTML (includes Tailwind + PDF libraries)
 ├── index.tsx        # React app with palette data and components
+├── src/             # Source files for the palette package (colors.css)
+├── dist/            # Built assets for publishing (dist/colors.css)
 ├── metadata.json    # App metadata (used by hosting environments)
 ├── package.json     # Scripts and dependency manifest
 ├── tsconfig.json    # TypeScript configuration
 └── vite.config.ts   # Vite build configuration
 ```
+
+## Palette single source of truth
+
+This workspace publishes a canonical CSS file containing only color custom properties at `dist/colors.css` (source at `src/colors.css`).
+
+- Treat `@tirrenia/palette` as the single source of truth for colors.
+- Other workspaces should consume the palette via npm and reference variables, e.g.
+
+```css
+@import 'node_modules/@tirrenia/palette/dist/colors.css';
+body { background: var(--tirrenia-app-background, #F2F0E9); }
+```
+
+When updating colors, edit `src/colors.css`, build the workspace (`npm run build`), then bump the package version and re-install the package in consuming workspaces.
 
 ## Customisation tips
 - Update palette colours or notes inside `paletteData` in `index.tsx`. Each item defines `name`, `hex`, and optional `note`.

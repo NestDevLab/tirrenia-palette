@@ -206,10 +206,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen font-sans text-gray-800">
+    <div className="min-h-screen font-sans" style={{ color: 'var(--tirrenia-app-text, #1f2933)', backgroundColor: 'var(--tirrenia-app-background, #F2F0E9)' }}>
       <header className="py-12 px-4 text-center relative">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900">🎨 Complete Palette</h1>
-        <p className="mt-2 text-xl text-gray-600">Tirrenia / Campania Tradition</p>
+        <h1 className="text-4xl md:text-5xl font-bold" style={{ color: 'var(--tirrenia-vesuvian-stone-gray, #4E4447)' }}>🎨 Complete Palette</h1>
+        <p className="mt-2 text-xl" style={{ color: 'var(--tirrenia-app-muted, #64748b)' }}>Tirrenia / Campania Tradition</p>
         <div className="absolute top-4 right-4 md:top-6 md:right-6">
           <button
             onClick={handleDownloadPdf}
