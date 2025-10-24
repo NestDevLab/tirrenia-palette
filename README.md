@@ -24,8 +24,9 @@ The app relies on CDN-hosted Tailwind CSS and PDF helpers (`html2canvas`, `jspdf
 
 ## Features
 - **Curated sections** – Palette data (`paletteData` in `index.tsx`) is grouped by theme (Earth & Volcano, Sea & Coast, etc.) with contextual imagery from the `assets/` directory.
-- **Copy to clipboard** – Each swatch exposes a “copy” button that writes the hex value to the clipboard and provides transient feedback.
-- **PDF export** – A “Download PDF” button triggers `html2canvas` + `jspdf` to capture the full page and export `palette-campania-tradition.pdf`.
+- **Copy to clipboard** – Each swatch exposes a "copy" button that writes the hex value to the clipboard and provides transient feedback.
+- **Logo downloads** – Download buttons allow instant access to brand logos in both PNG (raster) and SVG (vector) formats for use in different contexts.
+- **PDF export** – A "Download PDF" button triggers `html2canvas` + `jspdf` to capture the full page and export `palette-campania-tradition.pdf`.
 - **Responsive layout** – Tailwind utility classes ensure the layout adapts from mobile to desktop, with sticky imagery for larger viewports.
 
 ## Project structure
@@ -56,6 +57,29 @@ body { background: var(--tirrenia-app-background, #F2F0E9); }
 ```
 
 When updating colors, edit `src/colors.css`, build the workspace (`npm run build`), then bump the package version and re-install the package in consuming workspaces.
+
+## Using the logos
+
+The palette page displays official brand logos for Tirrenia and Caffè al Banco, available in both formats:
+
+### Available logo files
+Located in `assets/`:
+- **Tirrenia**: `logo-tirrenia.png` (raster) and `logo-tirrenia.svg` (vector)
+- **Caffè al Banco**: `logo-caffe-al-banco.png` (raster) and `logo-caffe-al-banco.svg` (vector)
+- **Caffè al Banco (logo-only)**: `logo-caffe-al-banco-logo-only.svg` (icon variant without text)
+
+### When to use PNG vs SVG
+- **PNG format**: Use for social media profiles, email signatures, PowerPoint presentations, or anywhere raster images are required. PNGs have a fixed resolution but work universally.
+- **SVG format**: Preferred for web applications, print materials, and scalable contexts. SVGs are vector-based, infinitely scalable without quality loss, and can be styled with CSS.
+
+### Download from the palette page
+Each logo on the palette page has dedicated **PNG** and **SVG** download buttons directly below the image preview. Click the appropriate button to download the format you need.
+
+### Usage guidelines
+- Use logos on backgrounds that provide sufficient contrast (refer to the color palette for brand-compliant combinations)
+- Maintain aspect ratio when resizing
+- For Tirrenia logo, prefer **Capri Blue** (`#0F5D84`) or **Tyrrhenian Blue** (`#2A6FA9`) as accent colors
+- For Caffè al Banco logo, use **Coffee Brown** (`#8A5B36`) or **Dark Espresso** (`#3B2C28`) for complementary elements
 
 ## Customisation tips
 - Update palette colours or notes inside `paletteData` in `index.tsx`. Each item defines `name`, `hex`, and optional `note`.

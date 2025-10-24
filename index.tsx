@@ -205,11 +205,75 @@ const App: React.FC = () => {
     }
   };
 
+  const handleDownloadLogo = (filename: string) => {
+    const link = document.createElement('a');
+    link.href = `assets/${filename}`;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="min-h-screen font-sans" style={{ color: 'var(--tirrenia-app-text, #1f2933)', backgroundColor: 'var(--tirrenia-app-background, #F2F0E9)' }}>
       <header className="py-12 px-4 text-center relative">
         <h1 className="text-4xl md:text-5xl font-bold" style={{ color: 'var(--tirrenia-vesuvian-stone-gray, #4E4447)' }}>🎨 Complete Palette</h1>
         <p className="mt-2 text-xl" style={{ color: 'var(--tirrenia-app-muted, #64748b)' }}>Tirrenia / Campania Tradition</p>
+        {/* logos */}
+        <div className="space-y-8 mt-8">
+          {/* Tirrenia Logo */}
+          <div className="flex flex-col items-center gap-3">
+            <img src="assets/logo-tirrenia.png" alt="Tirrenia Logo" className="h-44" />
+            <div className="flex gap-2">
+              <button
+                onClick={() => handleDownloadLogo('logo-tirrenia.png')}
+                className="bg-white border border-gray-300 text-gray-700 text-sm font-medium py-1.5 px-3 rounded-md shadow-sm hover:bg-gray-50 transition-colors flex items-center gap-1.5"
+                aria-label="Download Tirrenia logo PNG"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                PNG
+              </button>
+              <button
+                onClick={() => handleDownloadLogo('logo-tirrenia.svg')}
+                className="bg-white border border-gray-300 text-gray-700 text-sm font-medium py-1.5 px-3 rounded-md shadow-sm hover:bg-gray-50 transition-colors flex items-center gap-1.5"
+                aria-label="Download Tirrenia logo SVG"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                SVG
+              </button>
+            </div>
+          </div>
+          {/* Caffè al Banco Logo */}
+          <div className="flex flex-col items-center gap-3">
+            <img src="assets/logo-caffe-al-banco.png" alt="Caffè al Banco Logo" className="h-44" />
+            <div className="flex gap-2">
+              <button
+                onClick={() => handleDownloadLogo('logo-caffe-al-banco.png')}
+                className="bg-white border border-gray-300 text-gray-700 text-sm font-medium py-1.5 px-3 rounded-md shadow-sm hover:bg-gray-50 transition-colors flex items-center gap-1.5"
+                aria-label="Download Caffè al Banco logo PNG"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                PNG
+              </button>
+              <button
+                onClick={() => handleDownloadLogo('logo-caffe-al-banco.svg')}
+                className="bg-white border border-gray-300 text-gray-700 text-sm font-medium py-1.5 px-3 rounded-md shadow-sm hover:bg-gray-50 transition-colors flex items-center gap-1.5"
+                aria-label="Download Caffè al Banco logo SVG"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                SVG
+              </button>
+            </div>
+          </div>
+        </div>
         <div className="absolute top-4 right-4 md:top-6 md:right-6">
           <button
             onClick={handleDownloadPdf}
