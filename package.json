@@ -1,11 +1,16 @@
 {
   "name": "@tirrenia/palette",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
+  "files": [
+    "dist/colors.css",
+    "dist/logos/"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run build:assets",
+    "build:assets": "mkdir -p dist/logos && cp src/colors.css dist/colors.css && cp assets/logo-*.png assets/logo-*.svg dist/logos/ 2>/dev/null || true",
     "preview": "vite preview"
   },
   "dependencies": {

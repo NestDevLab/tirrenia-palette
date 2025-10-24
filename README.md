@@ -46,9 +46,9 @@ workspaces/tirrenia-palette/
 
 ## Palette single source of truth
 
-This workspace publishes a canonical CSS file containing only color custom properties at `dist/colors.css` (source at `src/colors.css`).
+This workspace publishes a canonical CSS file containing only color custom properties at `dist/colors.css` (source at `src/colors.css`), plus official brand logos in `dist/logos/`.
 
-- Treat `@tirrenia/palette` as the single source of truth for colors.
+- Treat `@tirrenia/palette` as the single source of truth for colors and brand assets.
 - Other workspaces should consume the palette via npm and reference variables, e.g.
 
 ```css
@@ -56,7 +56,24 @@ This workspace publishes a canonical CSS file containing only color custom prope
 body { background: var(--tirrenia-app-background, #F2F0E9); }
 ```
 
-When updating colors, edit `src/colors.css`, build the workspace (`npm run build`), then bump the package version and re-install the package in consuming workspaces.
+### Available logos
+
+The package includes official brand logos in both PNG and SVG formats:
+
+- **Tirrenia**: `dist/logos/logo-tirrenia.png`, `dist/logos/logo-tirrenia.svg`
+- **Caffè al Banco**: `dist/logos/logo-caffe-al-banco.png`, `dist/logos/logo-caffe-al-banco.svg`
+- **Caffè al Banco (icon only)**: `dist/logos/logo-caffe-al-banco-logo-only.svg`
+
+To use logos in your application, reference them from the installed package:
+
+```html
+<!-- In Angular/React/Vue -->
+<img src="node_modules/@tirrenia/palette/dist/logos/logo-tirrenia.svg" alt="Tirrenia" />
+```
+
+Or copy them to your public assets during build (see consuming workspace documentation for examples).
+
+When updating colors or logos, edit source files (`src/colors.css`, `assets/logo-*.{png,svg}`), build the workspace (`npm run build`), then bump the package version and re-install the package in consuming workspaces.
 
 ## Using the logos
 
