@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# syncwheel managed metadata
+.syncwheel/ledger/
+.syncwheel/profile.local.json
+.syncwheel/manifests/*.local.json
+.syncwheel/wt/
+# end syncwheel managed metadata
