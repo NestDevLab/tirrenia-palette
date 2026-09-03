@@ -1,9 +1,7 @@
 {
-  "changed_refs": {
-    "refs/heads/main-integration": "13adfaa667e8436ede6e0d2aba87f6be31bbf3ec"
-  },
+  "changed_refs": {},
   "coordination_id": "default",
-  "created_at": "2026-09-03T14:32:13+00:00",
+  "created_at": "2026-09-03T15:00:13+00:00",
   "installation_id": "e83434d1-e09b-4dd1-8bdf-a5f7970573c6",
   "managed_refs": {
     "refs/heads/main-integration": "13adfaa667e8436ede6e0d2aba87f6be31bbf3ec",
@@ -35,34 +33,27 @@
         "role": "canonical"
       },
       "branch": "main-integration",
-      "stacks": [
-        "palette-governance"
-      ],
+      "stacks": [],
       "strategy": "cherry-pick"
     },
-    "stacks": [
-      {
-        "base": {
-          "kind": "remote-ref",
-          "ref": "refs/heads/main",
-          "role": "canonical"
-        },
-        "branch": "syncwheel/draft/palette-governance",
-        "commits": [],
-        "id": "palette-governance",
-        "integration_branch": "main-integration",
-        "state": "draft",
-        "target_branch": "main"
-      }
-    ],
+    "stacks": [],
     "version": 2
   },
-  "manifest_digest": "3b93460994ec02988f2b4c95728879439b002f5123b9d2d98a15c3fc6d7282f3",
-  "parent_state": null,
+  "manifest_digest": "9e468cd957d50fad4c15734eba1fa5202537f2e8157f414f4a0ffc5e0bd67142",
+  "parent_state": "ca943eda4bed85f493153638012e52751b7b5236",
   "projection_status": "partial",
-  "publication_id": "0dd123da-5d42-4daa-b680-cb5227b562d8",
-  "publication_scope": "integration",
+  "publication_id": "efcd6efe-e459-485e-a157-aee588e07ca3",
+  "publication_scope": "close:palette-governance",
   "schema_version": 2,
   "syncwheel_version": "0.42.3",
-  "tombstones": []
+  "tombstones": [
+    {
+      "branch": "syncwheel/draft/palette-governance",
+      "closed_at": "2026-09-03T15:00:00+00:00",
+      "reason": "merged",
+      "ref": "refs/heads/syncwheel/draft/palette-governance",
+      "remote_tip": null,
+      "stack": "palette-governance"
+    }
+  ]
 }
