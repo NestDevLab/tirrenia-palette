@@ -11,9 +11,32 @@
     "branch": "main-integration",
     "base": "origin/main",
     "strategy": "cherry-pick",
-    "stacks": []
+    "stacks": [
+      "palette-governance-archive"
+    ]
   },
-  "stacks": [],
+  "stacks": [
+    {
+      "id": "palette-governance-archive",
+      "branch": "syncwheel/draft/palette-governance-archive",
+      "base": "origin/main",
+      "target_remote": "origin",
+      "target_branch": "main",
+      "integration_branch": "main-integration",
+      "commits": [],
+      "state": "draft",
+      "publication": {
+        "enabled": false
+      },
+      "meta": {
+        "purpose": "Record the absorbed Palette governance bootstrap"
+      },
+      "integration_only_commits": [
+        "14fe52709161c9f5efc57383d872df9e9a068290"
+      ],
+      "integration_commits": []
+    }
+  ],
   "syncwheel_tracking": "git-tracked",
   "syncwheel_worktree_root": ".syncwheel/wt",
   "coordination": {
