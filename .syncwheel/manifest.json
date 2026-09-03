@@ -11,9 +11,31 @@
     "branch": "main-integration",
     "base": "origin/main",
     "strategy": "cherry-pick",
-    "stacks": []
+    "stacks": [
+      "palette-governance"
+    ]
   },
-  "stacks": [],
+  "stacks": [
+    {
+      "id": "palette-governance",
+      "branch": "syncwheel/draft/palette-governance",
+      "base": "origin/main",
+      "target_remote": "origin",
+      "target_branch": "main",
+      "integration_branch": "main-integration",
+      "commits": [],
+      "state": "draft",
+      "publication": {
+        "enabled": false
+      },
+      "meta": {
+        "purpose": "Track Palette Syncwheel governance and AI authority"
+      },
+      "integration_only_commits": [
+        "14fe52709161c9f5efc57383d872df9e9a068290"
+      ]
+    }
+  ],
   "syncwheel_tracking": "git-tracked",
   "syncwheel_worktree_root": ".syncwheel/wt",
   "coordination": {
