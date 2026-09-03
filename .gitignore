@@ -27,5 +27,6 @@ dist-ssr
 .syncwheel/ledger/
 .syncwheel/profile.local.json
 .syncwheel/manifests/*.local.json
+.syncwheel/manifests/*.local-ledger/
 .syncwheel/wt/
 # end syncwheel managed metadata
