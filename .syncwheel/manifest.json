@@ -40,7 +40,7 @@
   "syncwheel_tracking": "git-tracked",
   "syncwheel_worktree_root": ".syncwheel/wt",
   "coordination": {
-    "mode": "active-active",
+    "mode": "disabled",
     "id": "default",
     "remote": "origin",
     "state_branch": "syncwheel/state/default",
